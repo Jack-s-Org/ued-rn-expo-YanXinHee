@@ -18,14 +18,11 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import SignInScreen from "./SignInScreen";
 
-// Create Native Stack Navigator
 const MainStacks = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-// Empty component to handle the middle tab action (AddTab)
 const Empty = () => null;
 
-// Discover Stack for navigation between DiscoverScreen, ChooseConcertScreen, and InfoScreen
 const DiscoverStack = () => {
   return (
     <MainStacks.Navigator screenOptions={{ headerShown: false }}>

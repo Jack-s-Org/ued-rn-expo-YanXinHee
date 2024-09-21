@@ -21,10 +21,12 @@ const DiscoverScreen = ({ navigation }) => {
   const [selectedGenres, setSelectedGenres] = useState([]); // Track selected genres
 
   const onDayPress = (day) => {
-    setDate(day.dateString);
+    // Set the date as a Date object
+    setDate(new Date(day.dateString));
     setShowCalendar(false); // Close calendar after selecting a date
   };
 
+  const formattedDate = date instanceof Date ? date.toLocaleDateString() : "";
   const toggleGenreSelection = (genre) => {
     setSelectedGenres((prev) =>
       prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
@@ -87,9 +89,9 @@ const DiscoverScreen = ({ navigation }) => {
           <Text style={styles.label}>Date</Text>
           <TouchableOpacity
             style={styles.datePickerButton}
-            onPress={() => setShowCalendar(!showCalendar)} // Toggle calendar
+            onPress={() => setShowCalendar(!showCalendar)}
           >
-            <Text style={styles.dateText}>{date.toLocaleDateString()}</Text>
+            <Text style={styles.dateText}>{formattedDate}</Text>
           </TouchableOpacity>
 
           {showCalendar && (
@@ -157,7 +159,7 @@ const DiscoverScreen = ({ navigation }) => {
           style={[styles.goButton]}
           onPress={() => navigation.navigate("ChooseConcert")} // Navigate to the concert screen
         >
-          <Text style={[styles.goButtonText]}>Go</Text>
+          <Text style={[styles.buttonText, styles.goButtonText]}>GO</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </ImageBackground>
@@ -272,29 +274,41 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start", // Align buttons to the start
   },
   genreButton: {
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    paddingVertical: 12, // Increased vertical padding
-    paddingHorizontal: 16, // Increased horizontal padding
+    borderWidth: 2,
+    borderColor: "white",
+    borderRadius: 20,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     margin: 5,
     alignItems: "center",
+    backgroundColor: "transparent",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
   genreText: {
-    fontSize: 18, // Increased font size
-    color: "black",
+    fontSize: 18,
+    color: "white", // White text
   },
   selectedGenreButton: {
-    backgroundColor: "#4CAF50", // Change color when selected
+    borderColor: "#FFFFFF", // White outline when selected
+    shadowOpacity: "100%",
+    shadowColor: "#AB38EB", // More pronounced shadow when selected
+    backgroundColor: "#AB38EB",
   },
   selectedGenreText: {
-    color: "white", // Change text color when selected
+    color: "white", // White text when selected
   },
   goButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#14C0FE",
     borderRadius: 10,
     paddingVertical: 15,
     paddingHorizontal: 20,
-    marginTop: 20,
+    marginTop: 100,
   },
   goButtonText: {
     fontSize: 18,

@@ -3,14 +3,14 @@ import {
   TouchableOpacity,
   Text,
   ImageBackground,
-  View, // Import View for the Sign Out text
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require("@/assets/image/bg2.png")} // Ensure the image path is correct
+      source={require("@/assets/image/bg2.png")}
       style={styles.backgroundImage}
       resizeMode="cover"
     >
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   signOutText: {
     marginTop: 20,
     color: "#FFFFFF",
-    textDecorationLine: "underline", // Underline the text
+    textDecorationLine: "underline",
   },
 });
 

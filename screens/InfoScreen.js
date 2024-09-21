@@ -17,7 +17,6 @@ const screenWidth = Dimensions.get("window").width;
 const InfoScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Fixed back icon, styled similar to ChooseConcertScreen */}
       <View style={styles.backIconContainer}>
         <TouchableOpacity
           style={styles.backIcon}
@@ -27,7 +26,6 @@ const InfoScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      {/* Scrollable content including images and buttons */}
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
         style={styles.scrollView}
@@ -35,32 +33,28 @@ const InfoScreen = ({ navigation }) => {
         {/* Top Image */}
         <View style={styles.topImageContainer}>
           <Image
-            source={require("@/assets/image/TopImage.png")} // Replace with the correct path to TopImage
+            source={require("@/assets/image/TopImage.png")}
             style={styles.topImage}
             resizeMode="cover"
           />
         </View>
 
-        {/* First scrollable image - asset5 */}
         <Image
-          source={require("@/assets/image/asset5.png")} // Replace with the correct path to asset5
+          source={require("@/assets/image/asset5.png")}
           style={styles.scrollableImage}
           resizeMode="contain"
         />
 
-        {/* Title above asset6 */}
         <Text style={styles.title}>Ticket Pricing</Text>
 
-        {/* Second scrollable image - asset6 */}
         <Image
-          source={require("@/assets/image/asset6.png")} // Replace with the correct path to asset6
+          source={require("@/assets/image/asset6.png")}
           style={styles.scrollableImage}
           resizeMode="contain"
         />
 
-        {/* Third scrollable image - asset7 */}
         <Image
-          source={require("@/assets/image/asset7.png")} // Replace with the correct path to asset7
+          source={require("@/assets/image/asset7.png")}
           style={styles.scrollableImage}
           resizeMode="contain"
         />
@@ -85,67 +79,67 @@ const InfoScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black", // Set the background color to black
+    backgroundColor: "black",
   },
   backIconContainer: {
     position: "absolute",
-    top: 70, // Match the position of the ChooseConcertScreen back icon
+    top: 70,
     left: 0,
-    zIndex: 10, // Keep the back icon on top of everything else
+    zIndex: 10,
   },
   backIcon: {
-    width: 40, // Same size as on ChooseConcertScreen
+    width: 40,
     height: 40,
     justifyContent: "center",
     alignItems: "center",
   },
   scrollView: {
     flex: 1,
-    width: "100%", // Make the scrollView full width
+    width: "100%",
   },
   scrollContainer: {
     alignItems: "center",
   },
   topImageContainer: {
     width: "100%",
-    height: screenHeight * 0.3, // Adjust TopImage height (30% of the screen height)
+    height: screenHeight * 0.3,
   },
   topImage: {
     width: "100%",
-    height: "110%", // TopImage takes full space within its container
+    height: "110%",
   },
   scrollableImage: {
     width: screenWidth,
-    height: screenHeight * 0.3, // Each image is 30% of the screen height
-    marginBottom: 20, // Add spacing between images
+    height: screenHeight * 0.3,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     color: "white",
     textAlign: "center",
-    marginVertical: 10, // Space above and below the title
+    marginVertical: 10,
   },
   buttonContainer: {
     width: "100%",
-    paddingHorizontal: 20, // Add some padding to the sides
-    marginBottom: 20, // Space at the bottom for the buttons
+    paddingHorizontal: 20,
+    marginBottom: 20,
   },
   button: {
-    backgroundColor: "#333", // Primary button color
+    backgroundColor: "#333",
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 25,
-    marginBottom: 15, // Space between the two buttons
-    width: "100%", // Make the button full width
+    marginBottom: 15,
+    width: "100%",
     alignItems: "center",
   },
   buttonSecondary: {
-    backgroundColor: "#14C0FE", // Secondary button color
+    backgroundColor: "#14C0FE",
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 25,
-    width: "100%", // Make the button full width
+    width: "100%",
     alignItems: "center",
   },
   buttonText: {
