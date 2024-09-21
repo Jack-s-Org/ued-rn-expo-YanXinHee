@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   asset: {
-    width: "90%", // Adjust as needed
-    height: 200, // Adjust as needed
+    width: "90%",
+    height: 200,
     marginBottom: 20,
   },
   dashLine: {
