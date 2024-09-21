@@ -1,104 +1,100 @@
 import { useState } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import HomeScreen from "./HomeScreen";
-import NotificationsScreen from "./NotificationsScreen";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MeScreen from "./MeScreen";
-import DiscoverScreen from "./DiscoverScreen";
-import AppDrawer from "./AppDrawer";
-import SettingsScreen from "./SettingsScreen";
-import AddScreen from "./AddScreen";
 
+import HomeScreen from "./HomeScreen";
+import NotificationsScreen from "./NotificationsScreen";
+import DiscoverScreen from "./DiscoverScreen";
+import AddScreen from "./AddScreen";
+import ChooseConcertScreen from "./ChooseConcertScreen";
+import InfoScreen from "./InfoScreen";
+import SettingsScreen from "./SettingsScreen";
+import SuccessScreen from "./SuccessScrene";
+import TicketsScreen from "./TicketsScreen";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import SignInScreen from "./SignInScreen";
+
+// Create Native Stack Navigator
 const MainStacks = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
+// Empty component to handle the middle tab action (AddTab)
 const Empty = () => null;
 
-const MainTabs = ({ navigation }) => {
-  const [unreadCount, setUnreadCount] = useState(3);
+// Discover Stack for navigation between DiscoverScreen, ChooseConcertScreen, and InfoScreen
+const DiscoverStack = () => {
   return (
-    <AppDrawer navigation={navigation}>
-      <SafeAreaView style={{ height: "100%" }}>
-        <Tab.Navigator
-          screenOptions={{
-            headerShown: false,
-            tabBarActiveTintColor: "#408086",
-          }}
-        >
-          <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="home" size={size} color={color} />
-              ),
-              tabBarLabel: "Home",
-            }}
-          />
-
-          <Tab.Screen
-            name="Discover"
-            component={DiscoverScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="search" size={size} color={color} />
-              ),
-              tabBarLabel: "Discover",
-            }}
-          />
-
-          <Tab.Screen
-            name="AddTab"
-            component={Empty} // this is a workaround to show a full screen when this tab is pressed
-            options={{
-              tabBarIcon: ({ color }) => (
-                <Ionicons name="add" size={36} color={color} />
-              ),
-              tabBarLabel: () => null,
-            }}
-            listeners={{
-              tabPress: (e) => {
-                e.preventDefault(); // stop default navigation
-                navigation.navigate("Add"); // manually navigate to the stack screen outside of the tab navigators
-              },
-            }}
-          />
-
-          <Tab.Screen
-            name="Inbox"
-            component={NotificationsScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="chatbox" size={size} color={color} />
-              ),
-              tabBarLabel: "Inbox",
-              tabBarBadge: unreadCount,
-            }}
-            listeners={{
-              tabPress: () => {
-                setUnreadCount(null);
-              },
-            }}
-          />
-
-          <Tab.Screen
-            name="SettingsDrawer"
-            component={MeScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <Ionicons name="person" size={size} color={color} />
-              ),
-              tabBarLabel: "Me",
-            }}
-          />
-        </Tab.Navigator>
-      </SafeAreaView>
-    </AppDrawer>
+    <MainStacks.Navigator screenOptions={{ headerShown: false }}>
+      <MainStacks.Screen name="DiscoverScreen" component={DiscoverScreen} />
+      <MainStacks.Screen name="ChooseConcert" component={ChooseConcertScreen} />
+      <MainStacks.Screen name="InfoScreen" component={InfoScreen} />
+      <MainStacks.Screen name="SuccessScreen" component={SuccessScreen} />
+    </MainStacks.Navigator>
   );
 };
 
+// Bottom Tab Navigator with the Discover Stack and others
+const MainTabs = ({ navigation }) => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: "#FF0898",
+        tabBarStyle: {
+          backgroundColor: "#000000", // Set tab bar background color to black
+        },
+      }}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="music" size={size} color={color} />
+          ),
+          tabBarLabel: "Home",
+        }}
+      />
+      <Tab.Screen
+        name="Inbox"
+        component={NotificationsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="bell" size={size} color={color} />
+          ),
+          tabBarLabel: "Notifications",
+        }}
+      />
+      <Tab.Screen
+        name="Discover"
+        component={DiscoverStack} // Using the DiscoverStack
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search" size={size} color={color} />
+          ),
+          tabBarLabel: "Search",
+        }}
+      />
+
+      <Tab.Screen
+        name="Tickets"
+        component={TicketsScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome5 name="ticket-alt" size={size} color={color} />
+          ),
+          tabBarLabel: "TicketsScreen",
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
+// Main Screens which includes the tab navigator and additional screens like Add and Settings
 const MainScreens = () => {
   return (
     <MainStacks.Navigator>
@@ -113,9 +109,9 @@ const MainScreens = () => {
         options={{ animation: "fade_from_bottom" }}
       />
       <MainStacks.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ animation: "fade_from_bottom" }}
+        name="SignIn"
+        component={SignInScreen}
+        options={{ animation: "fade_from_bottom", headerShown: false }}
       />
     </MainStacks.Navigator>
   );

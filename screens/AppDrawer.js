@@ -39,7 +39,7 @@ export default function AppDrawer({ navigation, children }) {
         {(insets) => (
           <TouchableOpacity
             onPress={() => {
-              setOpen(true);
+              setOpen(false);
             }}
             style={{
               zIndex: 99,
@@ -49,7 +49,7 @@ export default function AppDrawer({ navigation, children }) {
               padding: 16,
             }}
           >
-            <Ionicons name="menu" size={32} />
+            {/* <Ionicons name="menu" size={32} /> */}
           </TouchableOpacity>
         )}
       </SafeAreaInsetsContext.Consumer>
